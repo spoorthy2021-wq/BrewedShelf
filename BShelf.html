@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrewedShelf 🐾📚☕</title>
+  <link rel="stylesheet" href="BShelf.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo">BrewedShelf 🐾📚☕</h1>
+      <p class="tagline">Where every sip tells a story — curl up with a brew and a book.</p>
+    </div>
+  </header>
+
+  <!-- ===== NAV ===== -->
+  <nav class="navbar">
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#books">Books</a>
+    <a href="#cart">🛒 Cart (<span id="cart-count">0</span>)</a>
+  </nav>
+
+  <!-- ===== HOME HERO ===== -->
+  <section id="home" class="hero">
+    <h2>A cozy corner for curious souls</h2>
+    <p>Coffee wakes the mind. Books stir the soul. Together, they create the most peaceful experience imaginable. Pull up a chair, order your favourite brew, and lose yourself between the pages.</p>
+  </section>
+
+  <!-- ===== COFFEE MENU ===== -->
+  <section id="menu" class="section">
+    <h2 class="section-title">☕ Coffee Menu</h2>
+    <div class="grid" id="coffee-grid"></div>
+  </section>
+
+  <!-- ===== BOOKS ===== -->
+  <section id="books" class="section">
+    <h2 class="section-title">📚 Books</h2>
+    <div class="tabs">
+      <button class="tab active" data-cat="mystery">🔍 Mystery</button>
+      <button class="tab" data-cat="romance">💕 Romance</button>
+      <button class="tab" data-cat="selfhelp">🌱 Self-help</button>
+      <button class="tab" data-cat="kids">🧸 Kids</button>
+    </div>
+    <div class="grid" id="books-grid"></div>
+  </section>
+
+  <!-- ===== CART ===== -->
+  <section id="cart" class="section">
+    <h2 class="section-title">🛒 Your Cart</h2>
+    <div id="cart-items"><p class="empty-cart">Your cart is empty. Add something delightful!</p></div>
+    <div id="cart-total" class="cart-total" style="display:none;">
+      <span>Grand Total:</span>
+      <strong id="grand-total">₹0</strong>
+    </div>
+
+    <!-- Place Order button — shown only when cart has items -->
+    <button id="place-order-btn" class="place-order-btn" style="display:none;" onclick="showDeliveryForm()">
+      🚀 Place Order
+    </button>
+
+    <!-- ===== DELIVERY FORM ===== -->
+    <div id="delivery-form" style="display:none;">
+      <h3 class="form-title">📦 Delivery Details</h3>
+      <form id="dform" novalidate>
+
+        <!-- Name: letters and spaces only -->
+        <div class="field">
+          <label for="f-name">Full Name</label>
+          <input id="f-name" type="text" placeholder="e.g. Priya Sharma"
+            maxlength="60" autocomplete="name" required />
+          <span class="err" id="err-name"></span>
+        </div>
+
+        <!-- Contact: digits only, exactly 10 -->
+        <div class="field">
+          <label for="f-phone">Contact Number</label>
+          <input id="f-phone" type="tel" placeholder="10-digit mobile number"
+            maxlength="10" autocomplete="tel" required />
+          <span class="err" id="err-phone"></span>
+        </div>
+
+        <!-- Address: letters, numbers, spaces, commas, hyphens, # -->
+        <div class="field">
+          <label for="f-addr">Delivery Address</label>
+          <textarea id="f-addr" rows="3" placeholder="Flat/House No., Street, City, Pincode"
+            maxlength="200" required></textarea>
+          <span class="err" id="err-addr"></span>
+        </div>
+
+        <!-- Time slot: select -->
+        <div class="field">
+          <label for="f-slot">Preferred Time Slot</label>
+          <select id="f-slot" required>
+            <option value="">-- Select a slot --</option>
+            <option value="9am–11am">9 AM – 11 AM</option>
+            <option value="11am–1pm">11 AM – 1 PM</option>
+            <option value="1pm–3pm">1 PM – 3 PM</option>
+            <option value="3pm–5pm">3 PM – 5 PM</option>
+            <option value="5pm–7pm">5 PM – 7 PM</option>
+          </select>
+          <span class="err" id="err-slot"></span>
+        </div>
+
+        <button type="submit" class="add-btn submit-btn">✅ Confirm Order</button>
+      </form>
+    </div>
+
+    <!-- ===== SUCCESS MESSAGE ===== -->
+    <div id="order-success" style="display:none;" class="order-success">
+      <div class="success-icon">🎉</div>
+      <h3>Order Placed Successfully!</h3>
+      <p id="success-msg"></p>
+      <button class="add-btn" onclick="resetOrder()" style="max-width:220px;margin:1.5rem auto 0;">
+        🛍️ Continue Shopping
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p>© 2026 BrewedShelf 🐾📚☕ — Crafted with love and caffeine.</p>
+  </footer>
+
+  <script src="BShelf.js"></script>
+</body>
+</html>
